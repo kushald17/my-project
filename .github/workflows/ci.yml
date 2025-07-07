@@ -32,7 +32,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-       - name: Verify JAR exists
+    - name: Verify JAR exists
       run: ls -lh build/libs
 
     - name: Build and Push Docker Image
@@ -40,6 +40,5 @@ jobs:
       with:
         image: kushald17/demo-app
         registry: docker.io
-        dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}

@@ -35,11 +35,14 @@ jobs:
     - name: Verify JAR exists
       run: ls -lh build/libs
 
-    - name: Build and Push Docker Image
-      uses: mr-smithers-excellent/docker-build-push@v4
-      with:
-        image: kushald17/demo-app
-        registry: docker.io
-        context: .
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Log in to Docker Hub
+  uses: docker/login-action@v3
+  with:
+    username: ${{ secrets.DOCKER_USERNAME }}
+    password: ${{ secrets.DOCKER_PASSWORD }}
+    
+  - name: Build Docker image
+   run: docker build -t kushald17/demo-app:latest .
+
+  - name: Push Docker image
+    run: docker push kushald17/demo-app:latest

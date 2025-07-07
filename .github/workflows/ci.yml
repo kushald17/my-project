@@ -40,9 +40,8 @@ jobs:
   with:
     username: ${{ secrets.DOCKER_USERNAME }}
     password: ${{ secrets.DOCKER_PASSWORD }}
-    
-  - name: Build Docker image
-   run: docker build -t kushald17/demo-app:latest .
+     - name: Build Docker image
+        run: docker build -t kushald17/demo-app:latest .
 
   - name: Push Docker image
     run: docker push kushald17/demo-app:latest
